@@ -21,6 +21,9 @@ const PopularMenu = () => {
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
+      <div className="mx-auto w-fit  py-10">
+        <button className="btn btn-ghost border-b-[3px] border-b-black">View Full Menu</button>
+      </div>
     </section>
   );
 };
