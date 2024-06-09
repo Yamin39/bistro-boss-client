@@ -5,7 +5,6 @@ import menuImg3 from "../../../assets/menu/pizza-bg.jpg";
 import menuImg4 from "../../../assets/menu/salad-bg.jpg";
 import menuImg5 from "../../../assets/menu/soup-bg.jpg";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import Cover from "../../Shared/Cover/Cover";
 import MenuCategory from "../MenuCategory/MenuCategory";
 
 const Menu = () => {
@@ -14,21 +13,17 @@ const Menu = () => {
       <Helmet>
         <title>Our Menu | Bistro Boss</title>
       </Helmet>
-      <Cover img={menuImg} title="our menu"></Cover>
+
       <SectionTitle subHeading="Don't miss" heading="TODAY'S OFFER"></SectionTitle>
-      <MenuCategory category="popular"></MenuCategory>
+      <MenuCategory img={menuImg} title="OUR MENU" category="offered"></MenuCategory>
 
-      <Cover img={menuImg2} title="DESSERTS"></Cover>
-      <MenuCategory category="dessert"></MenuCategory>
+      <MenuCategory img={menuImg2} title="DESSERTS" category="dessert"></MenuCategory>
 
-      <Cover img={menuImg3} title="PIZZA"></Cover>
-      <MenuCategory category="pizza"></MenuCategory>
+      <MenuCategory img={menuImg3} title="PIZZA" category="pizza"></MenuCategory>
 
-      <Cover img={menuImg4} title="SALADS"></Cover>
-      <MenuCategory category="salad"></MenuCategory>
+      <MenuCategory img={menuImg4} title="SALADS" category="salad"></MenuCategory>
 
-      <Cover img={menuImg5} title="SOUPS"></Cover>
-      <MenuCategory category="soup"></MenuCategory>
+      <MenuCategory img={menuImg5} title="SOUPS" category="soup"></MenuCategory>
     </div>
   );
 };
