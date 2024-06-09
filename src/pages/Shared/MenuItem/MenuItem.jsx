@@ -6,6 +6,7 @@ const MenuItem = ({ item }) => {
       <div>
         <h3 className="uppercase">{name}----------</h3>
         <p>{recipe}</p>
+        <p>{item.category}</p>
       </div>
       <p className="text-yellow-500">${price}</p>
     </div>
