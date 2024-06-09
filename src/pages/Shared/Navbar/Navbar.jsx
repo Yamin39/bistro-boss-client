@@ -17,7 +17,7 @@ const Navbar = () => {
         <NavLink to="/our-menu">OUR MENU</NavLink>
       </li>
       <li>
-        <NavLink to="/our-shop">OUR SHOP</NavLink>
+        <NavLink to="/our-shop/salad">OUR SHOP</NavLink>
       </li>
       <li className="tooltip tooltip-bottom" data-tip="Cart">
         <NavLink to="/cart" className="btn w-full btn-circle lg:btn-sm">

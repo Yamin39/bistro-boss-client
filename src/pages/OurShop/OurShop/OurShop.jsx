@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import shopBanner from "../../../assets/shop/banner2.jpg";
@@ -6,6 +8,10 @@ import MenuTab from "../../Menu/MenuTab/MenuTab";
 import Cover from "../../Shared/Cover/Cover";
 
 const OurShop = () => {
+  const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
+  const { category } = useParams();
+  const [tabIndex, setTabIndex] = useState(category === "offered" ? 0 : categories.indexOf(category));
+  console.log(category);
   return (
     <div>
       <Helmet>
@@ -15,7 +21,7 @@ const OurShop = () => {
       <Cover img={shopBanner} title="OUR SHOP"></Cover>
 
       <div className="my-16">
-        <Tabs>
+        <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>
               <span className="uppercase">Salad</span>

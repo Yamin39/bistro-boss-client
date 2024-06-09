@@ -20,7 +20,7 @@ const MenuCategory = ({ category, img, title }) => {
             ))}
           </div>
           <div className="mx-auto w-fit  py-10">
-            <Link to="/our-shop" className="btn btn-ghost border-b-[3px] border-b-black">
+            <Link to={`/our-shop/${category}`} className="btn btn-ghost border-b-[3px] border-b-black">
               ORDER YOUR FAVORITE FOOD
             </Link>
           </div>
