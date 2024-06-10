@@ -1,5 +1,6 @@
-import { FaCalendar, FaHome, FaList, FaSearch, FaShoppingCart } from "react-icons/fa";
-import { MdReviews } from "react-icons/md";
+import { FaCalendar, FaHome, FaList, FaShoppingCart } from "react-icons/fa";
+import { FaBagShopping } from "react-icons/fa6";
+import { MdOutlineMenu, MdReviews } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
 
@@ -57,9 +58,15 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/our-shop/salad">
-                <FaSearch></FaSearch>
+              <NavLink to="/our-menu">
+                <MdOutlineMenu></MdOutlineMenu>
                 Menu
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/our-shop/salad">
+                <FaBagShopping></FaBagShopping>
+                Shop
               </NavLink>
             </li>
           </ul>
