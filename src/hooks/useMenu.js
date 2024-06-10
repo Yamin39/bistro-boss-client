@@ -7,7 +7,7 @@ const useMenu = (category) => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure("http://localhost:5000/menu").then((res) => {
+    axiosSecure("/menu").then((res) => {
       const popularMenu = res.data?.filter((item) => item.category === category);
       setMenus(popularMenu);
       setLoader(false);

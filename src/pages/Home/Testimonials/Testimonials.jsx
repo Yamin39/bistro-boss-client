@@ -17,7 +17,7 @@ const Testimonials = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure("http://localhost:5000/reviews").then((res) => setReviews(res.data));
+    axiosSecure("/reviews").then((res) => setReviews(res.data));
   }, []);
 
   return (

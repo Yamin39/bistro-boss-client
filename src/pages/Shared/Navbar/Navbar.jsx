@@ -1,9 +1,11 @@
 import { TiShoppingCart } from "react-icons/ti";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -31,7 +33,7 @@ const Navbar = () => {
       <li className="tooltip tooltip-bottom" data-tip="Cart">
         <NavLink to="/cart" className="relative btn w-full btn-circle lg:btn-sm">
           <TiShoppingCart />
-          <span className="absolute -top-2 -right-2 p-1 bg-red-200 rounded-full text-red-700">0</span>
+          <span className="absolute -top-2 -right-2 p-1 bg-red-200 rounded-full text-red-700">{cart.length}</span>
         </NavLink>
       </li>
       <li>
