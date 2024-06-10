@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
@@ -9,6 +9,9 @@ import useAuth from "../../hooks/useAuth";
 const Login = () => {
   const { logIn } = useAuth();
   const captchaRef = useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname;
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -19,15 +22,14 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     // captcha validation
     const user_captcha_value = captchaRef.current.value;
     if (!validateCaptcha(user_captcha_value)) {
-      toast.error("Captcha Does Not Match"),   {
-        duration: 2000,
-      }
-    ;
+      toast.error("Captcha Does Not Match"),
+        {
+          duration: 2000,
+        };
       return;
     }
 
@@ -35,6 +37,7 @@ const Login = () => {
       .then((res) => {
         console.log(res?.user);
         Swal.fire({ icon: "success", text: "Login successful!" });
+        navigate(from || "/");
       })
       .catch((err) => console.log(err?.message));
   };

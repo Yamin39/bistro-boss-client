@@ -1,11 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
   const { createUser } = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -16,6 +18,7 @@ const SignUp = () => {
       .then((res) => {
         console.log(res?.user);
         Swal.fire({ icon: "success", text: "SignUp successful!" });
+        navigate("/");
       })
       .catch((err) => console.log(err?.message));
   };
