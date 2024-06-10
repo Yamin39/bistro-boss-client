@@ -1,7 +1,16 @@
 import { TiShoppingCart } from "react-icons/ti";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   const navLinks = (
     <>
       <li>
@@ -25,7 +34,13 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/login">LOGIN</NavLink>
+        {user ? (
+          <button onClick={handleLogOut} className="btn btn-error">
+            LOGOUT
+          </button>
+        ) : (
+          <NavLink to="/login">LOGIN</NavLink>
+        )}
       </li>
     </>
   );

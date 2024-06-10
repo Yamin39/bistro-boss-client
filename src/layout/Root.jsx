@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../pages/Shared/Footer/Footer";
 import Navbar from "../pages/Shared/Navbar/Navbar";
@@ -12,6 +13,11 @@ const Root = () => {
         <Outlet></Outlet>
       </div>
       {noHeaderFooter || <Footer></Footer>}
+      <Toaster
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
     </div>
   );
 };
