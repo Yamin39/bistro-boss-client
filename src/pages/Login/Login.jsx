@@ -15,6 +15,8 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
+    
+
     // captcha validation
     const user_captcha_value = captchaRef.current.value;
     if (!validateCaptcha(user_captcha_value)) {
