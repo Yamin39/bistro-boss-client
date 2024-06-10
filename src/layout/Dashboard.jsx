@@ -5,7 +5,7 @@ import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
 const Dashboard = () => {
   return (
     <div className="flex">
-      <div>
+      <div className="flex">
         <Sidebar></Sidebar>
       </div>
       <div className="flex-grow">
