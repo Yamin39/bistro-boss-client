@@ -35,7 +35,7 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <button onClick={handleLogOut} className="btn btn-error">
+          <button onClick={handleLogOut} className="btn btn-error btn-sm text-xs">
             LOGOUT
           </button>
         ) : (
@@ -61,7 +61,7 @@ const Navbar = () => {
           <a className="btn btn-ghost text-xl">Bistro Boss</a>
         </div>
         <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+          <ul className="menu menu-horizontal px-1 gap-2">{navLinks}</ul>
         </div>
       </div>
     </div>
