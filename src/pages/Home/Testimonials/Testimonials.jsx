@@ -10,14 +10,14 @@ import "@smastrom/react-rating/style.css";
 import { FaQuoteLeft } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
+    axiosSecure("http://localhost:5000/reviews").then((res) => setReviews(res.data));
   }, []);
 
   return (

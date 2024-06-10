@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 
 const PopularMenu = () => {
   const [menus, setMenus] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch("http://localhost:5000/menu")
-      .then((res) => res.json())
-      .then((data) => {
-        const popularMenu = data?.filter((item) => item.category === "popular");
-        setMenus(popularMenu);
-      });
+    axiosSecure("http://localhost:5000/menu").then((data) => {
+      const popularMenu = data.data?.filter((item) => item.category === "popular");
+      setMenus(popularMenu);
+    });
   }, []);
   return (
     <section className="my-10">

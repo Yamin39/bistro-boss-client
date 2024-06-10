@@ -29,8 +29,9 @@ const Navbar = () => {
         <NavLink to="/our-shop/salad">OUR SHOP</NavLink>
       </li>
       <li className="tooltip tooltip-bottom" data-tip="Cart">
-        <NavLink to="/cart" className="btn w-full btn-circle lg:btn-sm">
+        <NavLink to="/cart" className="relative btn w-full btn-circle lg:btn-sm">
           <TiShoppingCart />
+          <span className="absolute -top-2 -right-2 p-1 bg-red-200 rounded-full text-red-700">0</span>
         </NavLink>
       </li>
       <li>
