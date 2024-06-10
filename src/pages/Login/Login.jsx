@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { logIn } = useAuth();
   const captchaRef = useRef();
 
   useEffect(() => {
@@ -15,8 +18,6 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    
-
     // captcha validation
     const user_captcha_value = captchaRef.current.value;
     if (!validateCaptcha(user_captcha_value)) {
@@ -24,7 +25,9 @@ const Login = () => {
       return;
     }
 
-    alert("success");
+    logIn(email, password)
+      .then((res) => console.log(res?.user))
+      .catch((err) => console.log(err?.message));
   };
 
   return (
@@ -63,6 +66,11 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
+          <p>
+            <small>
+              New Here? <Link to="/sign-up">Create an account</Link>
+            </small>
+          </p>
         </div>
       </div>
     </div>
