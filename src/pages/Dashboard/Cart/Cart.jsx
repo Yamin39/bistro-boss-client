@@ -1,5 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 
@@ -34,6 +35,7 @@ const Cart = () => {
   };
   return (
     <>
+      <SectionTitle subHeading="My Cart" heading="WANNA ADD MORE?"></SectionTitle>
       <div className="mt-10">
         <div className="flex justify-evenly mb-8">
           <h2 className="text-4xl">Items: {cart.length}</h2>
