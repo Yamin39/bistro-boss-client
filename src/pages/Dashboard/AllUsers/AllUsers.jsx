@@ -14,6 +14,33 @@ const AllUsers = () => {
     },
   });
 
+  // make user an admin
+  const handleMakeAdmin = (user) => {
+    Swal.fire({
+      title: "Are tou sure?",
+      text: ` You are going to make ${user.name} an admin?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Done!",
+              text: `${user.name} is now an admin.`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  // delete user
   const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -66,10 +93,7 @@ const AllUsers = () => {
                   {user.role === "admin" ? (
                     "Admin"
                   ) : (
-                    <button
-                      // onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-lg bg-orange-500"
-                    >
+                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-lg bg-orange-500">
                       <FaUsers
                         className="text-white 
                               text-2xl"
