@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
@@ -57,7 +58,7 @@ const SignUp = () => {
             </Link>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <div className="card-body pb-0">
               {/* name */}
               <div className="form-control">
                 <label className="label">
@@ -123,6 +124,8 @@ const SignUp = () => {
                 </small>
               </p>
             </div>
+            <div className="divider px-8">OR</div>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>
