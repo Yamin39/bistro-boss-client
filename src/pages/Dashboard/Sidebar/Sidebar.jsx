@@ -8,7 +8,7 @@ const Sidebar = () => {
   const { cart } = useCart();
 
   const isAdmin = true;
-  
+
   return (
     <>
       <div className="drawer lg:drawer-open">
