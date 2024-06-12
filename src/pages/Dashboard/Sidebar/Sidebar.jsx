@@ -2,12 +2,13 @@ import { FaCalendar, FaHome, FaList, FaShoppingCart } from "react-icons/fa";
 import { FaBagShopping, FaBook, FaEnvelope, FaUsers, FaUtensils } from "react-icons/fa6";
 import { MdOutlineMenu, MdReviews } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
 import useCart from "../../../hooks/useCart";
 
 const Sidebar = () => {
   const { cart } = useCart();
 
-  const isAdmin = true;
+  const { isAdmin } = useAdmin();
 
   return (
     <>
