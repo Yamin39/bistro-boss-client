@@ -1,10 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const PaymentHistory = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: payments = [] } = useQuery({
+    queryKey: ["payments", user.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payments/${user.email}`);
+      return res.data;
+    },
+  });
   return (
     <div>
       <SectionTitle subHeading="At a Glance!" heading="PAYMENT HISTORY"></SectionTitle>
-      <h2 className="text3-xl">Total Payments: 0</h2>
+      <h2 className="text3-xl">Total Payments: {payments.length}</h2>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -17,12 +30,14 @@ const PaymentHistory = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>{1}</th>
-              <td>${99}</td>
-              <td>{"abcd"}</td>
-              <td>{"done"}</td>
-            </tr>
+            {payments.map((payment, index) => (
+              <tr key={payment._id}>
+                <th>{index + 1}</th>
+                <td>${Number(payment.price).toFixed(2)}</td>
+                <td>{payment.transactionId}</td>
+                <td>{payment.status}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
