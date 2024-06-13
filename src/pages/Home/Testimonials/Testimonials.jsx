@@ -10,14 +10,14 @@ import "@smastrom/react-rating/style.css";
 import { FaQuoteLeft } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    axiosSecure("/reviews").then((res) => setReviews(res.data));
+    axiosPublic("/reviews").then((res) => setReviews(res.data));
   }, []);
 
   return (
