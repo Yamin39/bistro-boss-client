@@ -1,14 +1,40 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useMenu from "../../../hooks/useMenu";
 
 const ManageItems = () => {
-  const [menus, loader] = useMenu("all");
+  const [menus, loader, refetch] = useMenu("all");
+  const axiosSecure = useAxiosSecure();
 
   console.log(menus);
 
   const handleDeleteItem = (item) => {
-    console.log("delete it: ", item);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/menu/${item._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Menu item has been deleted.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    });
   };
 
   return (

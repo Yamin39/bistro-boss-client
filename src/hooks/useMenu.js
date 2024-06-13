@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
-import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useMenu = (category) => {
-  const [menus, setMenus] = useState([]);
-  const [loader, setLoader] = useState(true);
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    axiosSecure("/menu").then((res) => {
+  const {
+    data: menus = [],
+    isPending: loader,
+    refetch,
+  } = useQuery({
+    queryKey: ["menus"],
+    queryFn: async () => {
+      const res = await axiosPublic("/menu");
+
       if (category === "all") {
-        setMenus(res.data);
-        setLoader(false);
-        return;
+        return res.data;
       }
-      const popularMenu = res.data?.filter((item) => item.category === category);
-      setMenus(popularMenu);
-      setLoader(false);
-    });
-  }, []);
 
-  return [menus, loader];
+      const categorizedMenu = res.data?.filter((item) => item.category === category);
+      return categorizedMenu;
+    },
+  });
+
+  return [menus, loader, refetch];
 };
 
 export default useMenu;
