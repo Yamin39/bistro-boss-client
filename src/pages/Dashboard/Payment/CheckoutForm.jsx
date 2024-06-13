@@ -130,7 +130,7 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button className="btn btn-accent mt-6" type="submit" disabled={!stripe || !clientSecret || cart.length}>
+      <button className="btn btn-accent mt-6" type="submit" disabled={!stripe || !clientSecret || !cart.length}>
         Pay
       </button>
       <p className="text-red-600">{error}</p>
