@@ -8,6 +8,11 @@ const useMenu = (category) => {
 
   useEffect(() => {
     axiosSecure("/menu").then((res) => {
+      if (category === "all") {
+        setMenus(res.data);
+        setLoader(false);
+        return;
+      }
       const popularMenu = res.data?.filter((item) => item.category === category);
       setMenus(popularMenu);
       setLoader(false);
