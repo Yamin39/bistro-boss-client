@@ -1,6 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
@@ -11,6 +13,7 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const elements = useElements();
   const { cart, refetch } = useCart();
   const axiosSecure = useAxiosSecure();
@@ -30,6 +33,10 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!cart.length) {
+      return toast.error("Yor Cart is empty");
+    }
 
     if (!stripe || !elements) {
       return;
@@ -90,6 +97,17 @@ const CheckoutForm = () => {
         const res = await axiosSecure.post("/payments", payment);
         console.log("Payment saved", res.data);
         refetch();
+
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Thank you for the taka poisa",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
+        navigate("/dashboard/payment-history");
       }
     }
   };
@@ -112,7 +130,7 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button className="btn btn-accent mt-6" type="submit" disabled={!stripe || !clientSecret}>
+      <button className="btn btn-accent mt-6" type="submit" disabled={!stripe || !clientSecret || cart.length}>
         Pay
       </button>
       <p className="text-red-600">{error}</p>

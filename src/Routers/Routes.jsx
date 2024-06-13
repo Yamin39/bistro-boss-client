@@ -6,6 +6,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>,
       },
 
       // admin routes

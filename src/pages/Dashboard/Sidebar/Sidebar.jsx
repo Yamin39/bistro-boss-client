@@ -69,9 +69,9 @@ const Sidebar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/reservation">
+                  <NavLink to="/dashboard/payment-history">
                     <FaCalendar></FaCalendar>
-                    Reservation
+                    Payment History
                   </NavLink>
                 </li>
                 <li>
