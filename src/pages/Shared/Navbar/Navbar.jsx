@@ -1,11 +1,13 @@
 import { TiShoppingCart } from "react-icons/ti";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const { cart, isPending } = useCart();
+  const { isAdmin } = useAdmin();
 
   const handleLogOut = () => {
     logOut()
@@ -21,9 +23,20 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact-us">CONTACT US</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard">DASHBOARD</NavLink>
-      </li>
+      {
+        // user ? 'true': 'false'
+        // user ? condition ? 'double true' : 'one true' : 'false'
+      }
+      {user && isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome">DASHBOARD</NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink to="/dashboard/userHome">DASHBOARD</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/our-menu">OUR MENU</NavLink>
       </li>
